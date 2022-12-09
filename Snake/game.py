@@ -1,5 +1,4 @@
 import pygame,random
-
 def direction_snake(changeto,direction):
     if changeto == 'RIGHT' and not direction == 'LEFT':
         direction = 'RIGHT'
@@ -33,13 +32,10 @@ def score_display(game_active):
         hight_score_a = game_font.render(f'Hight Score:{int(hight_score)}',True,(255,255,255))
         hight_score_rect = hight_score_a.get_rect(center = (200,400))
         screen.blit(hight_score_a,hight_score_rect)
-
 pygame.init()
-
 screen = pygame.display.set_mode((400,600))
 clock = pygame.time.Clock()
 play = True
-
 snakepos = [200,200]
 snakebody = [[200,209],[200,218],[200,227]]
 foodx = random.randrange(1,48)
@@ -115,6 +111,5 @@ while play:
         screen.blit(play_agin,play_agin_rect)
         score_display(game_active)
     pygame.display.update()
-    clock.tick(20)
+    clock.tick(40)
 pygame.quit()
-            
