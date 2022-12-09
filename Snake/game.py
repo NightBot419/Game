@@ -111,5 +111,5 @@ while play:
         screen.blit(play_agin,play_agin_rect)
         score_display(game_active)
     pygame.display.update()
-    clock.tick(40)
+    clock.tick(20)
 pygame.quit()
