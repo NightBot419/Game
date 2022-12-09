@@ -1,5 +1,4 @@
 import pygame, random
-
 def draw(x):
 	return pygame.transform.scale2x(pygame.image.load(x).convert())
 def draw_alpha(x):
@@ -16,7 +15,6 @@ def score_display(game_active):
 		hight_score_a = game_font.render(f'Hight Score: {int(hight_score)}',True,(255,255,255))
 		hight_score_rect = hight_score_a.get_rect(center = (216,630))
 		screen.blit(hight_score_a,hight_score_rect)
-
 pygame.init()
 floor_x = bird_moment = score = bird_index = 0
 with open("Program/data.txt","r") as file:
@@ -26,11 +24,9 @@ pipe_y = random.choice(pipe_height)
 speed = 4
 game_play = True
 game_active = True
-
 screen = pygame.display.set_mode((432,768))
 clock = pygame.time.Clock()
 pygame.display.set_caption('Flappy Bird')
-
 bg = draw("Program/bg.png")
 floor = draw("Program/floor.png")
 pipe = draw("Program/pipe.png")
@@ -45,16 +41,12 @@ bird_down = draw_alpha("Program/bird_down.png")
 bird_list = [bird_down,bird_mid,bird_up]
 bird = bird_list[bird_index]
 bird_rect = bird.get_rect(center = (100,350))
-
 bird_flag = pygame.USEREVENT
 pygame.time.set_timer(bird_flag,100)
-
 flap_sound = pygame.mixer.Sound('Program/flap.wav')
 hit_sound = pygame.mixer.Sound('Program/hit.wav')
 score_sound = pygame.mixer.Sound('Program/score.wav')
 game_font = pygame.font.Font('Program/04B_19.ttf',40)
-
-
 while game_play:
 	clock.tick(120)
 	floor_x -= speed
