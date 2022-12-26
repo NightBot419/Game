@@ -9,6 +9,7 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("SIGN IN")
 play = True
 r = 0
+speed = 2
 list_hover = []
 list_circle = [-i for i in range(0,540,60)]
 # 0
@@ -29,7 +30,7 @@ Forgot = text("Forgot Password",19,WHITE)
 Sign_up = text("Signup",22,GREEN)
 # 4
 Sign_in = text("SIGN IN", 30, GREEN)
-Sign_in_rect = Sign_in.get_rect(center = (434,117))
+Sign_in_rect = Sign_in.get_rect(center = (434,112))
 # 5
 Login = text("Login",27,GREEN)
 Login_rect = Login.get_rect(center = (434,317))
@@ -41,13 +42,15 @@ Click_Mouse_Pass = False
 Pass_y = 222
 Pass_afther = text("Password:",16,WHITE)
 # 7
+index = 0
 # VÒNG LẶP CHÍNH
 while play:
-    clock.tick(60)
     mouse_x,mouse_y = pygame.mouse.get_pos()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             play = False
+        # if event.type == Speed:
+        #     speed = 2
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if 329 < mouse_x < 329+210 and 155 < mouse_y < 195:
@@ -58,6 +61,15 @@ while play:
                     User_play = False
                     Pass_play = True
                     Click_Mouse_Pass = True
+                elif 329 < mouse_x < 329+210 and 297.5 < mouse_y < 297.5+40:
+                    speed = 5
+                    index = 10
+                elif 329 < mouse_x < 329+106 and 265 < mouse_y < 265+15:
+                    speed = 5
+                    index = 10
+                elif 486 < mouse_x < 486+51 and 266 < mouse_y < 265+16:
+                    speed = 5
+                    index = 10
                 else:
                     User_play = False
                     Pass_play = False
@@ -71,6 +83,8 @@ while play:
                     pass
                 else:
                     a += event.unicode
+                    speed = 5
+                    index = 10
             User_play = True
         if Pass_play: 
             if b == "Password":
@@ -78,20 +92,28 @@ while play:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     b = b[:-1]
+                elif event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT or event.key == pygame.K_KP_ENTER or event.key == pygame.K_END or event.key == pygame.K_AC_BACK or event.key == pygame.K_AMPERSAND or event.key == pygame.K_AT or event.key == pygame.K_ASTERISK or event.key == pygame.K_AMPERSAND or event.key == pygame.K_CAPSLOCK or event.key == pygame.K_TAB: 
+                    pass
                 else:
                     b += "*"
+                    speed = 5
+                    index = 10
+
             Pass_play = True
     # HIỆU ỨNG SÓNG        
     for i in list_circle:
         pygame.draw.circle(screen,(0, 245, 255),(434,217),i)
         pygame.draw.circle(screen,(0,0,0),(434,217),i-5)
     for i in range(len(list_circle)):
-        list_circle[i] += 2
+        list_circle[i] += speed
     for i in range(len(list_circle)):
-        if list_circle[i] == 540:
+        if list_circle[i] >= 540:
             list_circle.pop(0)
             list_circle.append(0)
+            index -= 1
             break
+    if index == 0:
+        speed = 2
     # HIỆU ỨNG HOVER CHO CÁC HÌNH VUÔNG
     for i in range(4,868,54):
         for j in range(4,434,54):
@@ -126,8 +148,8 @@ while play:
         if 154 <= User_y <= 167:
             User_y -= 1
         screen.blit(User_afther,(343,User_y))
-        User_before = text(a,20,WHITE)
-        screen.blit(User_before,(348,168))
+        User_before = text(a,22,WHITE)
+        screen.blit(User_before,(348,170))
     else:
         User_before = text(a,20,(170,170,170))
         screen.blit(User_before,(343,167))
@@ -140,7 +162,7 @@ while play:
         if 209 <= Pass_y <= 222:
             Pass_y -= 1
         screen.blit(Pass_afther,(343,Pass_y))
-        Pass_before = text(b,20,WHITE)
+        Pass_before = text(b,22,WHITE)
         screen.blit(Pass_before,(348,227))
     else:
         Pass_before = text(b,20,(170,170,170))
@@ -149,33 +171,6 @@ while play:
         b = "Password"
         Click_Mouse_Pass = False
         Pass_y = 222
+    clock.tick(60)
     pygame.display.flip()
 pygame.quit()
-
-
-
-
-
-# backgroup (51,51,51)
-# color font username,password (170,170,170)
-# color font username,password,login afther click (255,255,255)
-# signin signup (0,255,0)
-# backgroup login (0,255,0)
-# backgroup rect (24,24,24)
-
-
-    # for i in range(0,250,50):
-    #     pygame.draw.circle(screen,(0, 245, 255),(434,217),r-i)
-    #     pygame.draw.circle(screen,(0,0,0),(434,217),r-i-5)  
-    # if r >= 700:
-    #     r = 0
-    # r += 3
-
-
-
-    # screen.fill((0,a_display,0))
-    # if a_display == 255:
-    #     a = -1
-    # elif a_display == 0:
-    #     a = 1
-    # a_display += a
