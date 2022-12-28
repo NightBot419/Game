@@ -51,11 +51,13 @@ while play:
             play = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
+                screen.fill((0,0,0))
                 list_hover = []
                 hover_1 = True
                 hover_2 = False
                 hover_3 = False
             if event.key == pygame.K_b:
+                screen.fill((0,0,0))
                 list_hover_1 = []
                 hover_2 = True
                 hover_3 = False
