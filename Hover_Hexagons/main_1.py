@@ -3,7 +3,7 @@
 #  |  \  | |    |    |      |----
 #  |   \_| |____|    |      |____
 
-# Bấm a,b,c,d,e để đổi kiểu hover
+# Bấm a,b,c,d,e,f để đổi kiểu hover
 
 import pygame,math,random
 def Hexagons(poin,size):
@@ -25,8 +25,6 @@ def Gradient_circle(color,size):
     surface = pygame.Surface((4,4))
     pygame.draw.circle(surface,color,(2,2),1) 
     return pygame.transform.smoothscale(surface,(size[0],size[1])) 
-
-
 def Gradient_circle_2(size):
     surface = pygame.Surface((50,50))
     pygame.draw.circle(surface,(255,125,82),(25,25),25) 
@@ -194,10 +192,10 @@ while play:
                 pass
             elif 0 < (mouse_x - (size_x*i))*(mouse_x - (size_x*i)) + (mouse_y-(size_y*j-25))*(mouse_y-(size_y*j-25)) < size*size-300:
                 list_hover.append([size_x*i,size_y*j-25,255,size])
-                list_hover_1.append([(size_x*i,size_y*j-25),(size_x*i,size_y*(j+1)-25),(size_x*i,size_y*(j-1)-25),(size_x*i+size_x/2,size_y*j+size_y/2-25),(size_x*i+size_x/2,size_y*(j-1)+size_y/2-25),(size_x*(i-1)+size_x/2,size_y*j+size_y/2-25),(size_x*(i-1)+size_x/2,size_y*(j-1)+size_y/2-25),255])
+                list_hover_1.append([(size_x*i,size_y*j-25),(size_x*i,size_y*(j+1)-25),(size_x*i,size_y*(j-1)-25),(size_x*i+size_x/2,size_y*j+size_y/2-25),(size_x*i+size_x/2,size_y*(j-1)+size_y/2-25),(size_x*(i-1)+size_x/2,size_y*j+size_y/2-25),(size_x*(i-1)+size_x/2,size_y*(j-1)+size_y/2-25)])
             if 0 < math.pow((mouse_x -(size_x*i+size_x/2)),2) + math.pow((mouse_y - (size_y*j+size_y/2-25)),2) < size*size-300:
                 list_hover.append([size_x*i+size_x/2,size_y*j+size_y/2-25,255,size])
-                list_hover_1.append([(size_x*i+size_x/2,size_y*j+size_y/2-25),(size_x*i+size_x/2,size_y*(j+1)+size_y/2-25),(size_x*i+size_x/2,size_y*(j-1)+size_y/2-25),(size_x*i,size_y*j-25),(size_x*i,size_y*(j+1)-25),(size_x*(i+1),size_y*j-25),(size_x*(i+1),size_y*(j+1)-25),255])
+                list_hover_1.append([(size_x*i+size_x/2,size_y*j+size_y/2-25),(size_x*i+size_x/2,size_y*(j+1)+size_y/2-25),(size_x*i+size_x/2,size_y*(j-1)+size_y/2-25),(size_x*i,size_y*j-25),(size_x*i,size_y*(j+1)-25),(size_x*(i+1),size_y*j-25),(size_x*(i+1),size_y*(j+1)-25)])
     if hover_1:
         for i in list_hover:
             pygame.draw.polygon(screen,(59,i[2],i[2]),Hexagons((i[0],i[1]),i[3]))
