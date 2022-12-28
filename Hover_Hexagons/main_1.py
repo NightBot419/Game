@@ -87,7 +87,7 @@ pygame.time.set_timer(spaw_color,200)
 q = w = e = 0
 list_r = [i for i in range(1,6)]
 
-color = (0,255,0)
+color = (0,255,255)
 
 while play:
     mouse_x,mouse_y = pygame.mouse.get_pos()
@@ -119,7 +119,7 @@ while play:
                 hover_6 = False
                 hover_5 = False
                 hover_4 = False
-            if event.key == pygame.K_c:
+            if event.key == pygame.K_d:
                 list_hover = []
                 hover_3 = True
                 hover_1 = False
@@ -135,7 +135,7 @@ while play:
                 hover_5 = False
                 hover_6 = False
                 hover_4 = True       
-            if event.key == pygame.K_d:
+            if event.key == pygame.K_c:
                 list_hover = []
                 hover_3 = False
                 hover_1 = False
