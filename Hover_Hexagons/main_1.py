@@ -5,7 +5,7 @@
 
 # Bấm a,b,c để đổi kiểu hover
 
-import pygame,math
+import pygame,math,random
 def Hexagons(poin,size):
     x,y = poin
     a = (x-size/2,y-float((math.sqrt(3)/2)*size))
@@ -26,7 +26,6 @@ def Gradient_circle(color,size):
     pygame.draw.circle(surface,color,(2,2),1) 
     return pygame.transform.smoothscale(surface,(size[0],size[1]))   
 
-
 pygame.init()
 screen = pygame.display.set_mode((1000,680))
 play = True
@@ -41,7 +40,9 @@ list_hover_1 = []
 hover_1 = False
 hover_2 = False
 hover_3 = False
-gradient_hover = Gradient_circle((255,0,0),(300,300))
+spaw_color = pygame.USEREVENT
+pygame.time.set_timer(spaw_color,200)
+q = w = e = 0
 while play:
     mouse_x,mouse_y = pygame.mouse.get_pos()
     # print(mouse_x,mouse_y)
@@ -49,6 +50,10 @@ while play:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             play = False
+        if event.type == spaw_color:
+            q,w,e = random.choice([255,0]),random.choice([255,0]),random.choice([255,0])
+            if q == e == w == 0:
+                q,w,e = random.choice([255,0]),random.choice([255,0]),random.choice([255,0])
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
                 screen.fill((0,0,0))
@@ -66,19 +71,14 @@ while play:
                 list_hover = []
                 hover_3 = True
                 hover_1 = False
-                hover_2 = False
-            
+                hover_2 = False       
     #2 Hiệu ứng hightlight animotion
     if hover_3:
         screen.fill((0,0,0))
         for i in list_hover:
-            
+            gradient_hover = Gradient_circle((q,w,e),(300,300))
             screen.blit(gradient_hover,gradient_hover.get_rect(center = (i[0],i[1])))
-        try:
-            for i in list_hover:
-                list_hover.remove(i)
-        except:
-            list_hover = []
+        list_hover = []
     else:
         gradient_y_1 += 5
         gradient_y_2 += 5
@@ -120,12 +120,7 @@ while play:
             pygame.draw.polygon(screen,(0,i[7],i[7]),Hexagons(i[3],size))      
             pygame.draw.polygon(screen,(0,i[7],i[7]),Hexagons(i[4],size))      
             pygame.draw.polygon(screen,(0,i[7],i[7]),Hexagons(i[5],size))      
-            pygame.draw.polygon(screen,(0,i[7],i[7]),Hexagons(i[6],size))
-        try:
-            for i in list_hover_1:
-                list_hover_1.remove(i)
-        except:
-            list_hover_1 = []
-
+            pygame.draw.polygon(screen,(0,i[7],i[7]),Hexagons(i[6],size))       
+        list_hover_1 = []
     pygame.display.flip()
 pygame.quit()
