@@ -153,13 +153,13 @@ while play:
     if hover_3:
         screen.fill((0,0,0))
         for i in list_hover:
-            gradient_hover = Gradient_circle((q,w,e),(250,250))
+            gradient_hover = Gradient_circle((q,w,e),(400,400))
             screen.blit(gradient_hover,gradient_hover.get_rect(center = (i[0],i[1])))
         list_hover = []
     elif hover_6:
         screen.fill((0,0,0))
         for i in list_hover:
-            gradient_hover = Gradient_circle(color,(250,250))
+            gradient_hover = Gradient_circle(color,(400,400))
             screen.blit(gradient_hover,gradient_hover.get_rect(center = (i[0],i[1])))
         list_hover = []
     elif hover_4:
